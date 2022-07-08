@@ -16,18 +16,13 @@ class ProfileController extends Controller
     public function index(Request $request, $id)
     {
         $users = User::findOrFail($id);
-        $products = Product::with(['galleries', 'user'])->where('users_id', $id)->get();
-        $sellTransactions = TransactionDetail::with(['transaction.user']) //memanggil data DB dan relasi di model
-                            ->whereHas('product', function($product){ //mencari produk yang berhasil terjual
-                                $product->where('users_id', Auth::user()->id); //mencari transaksi pada user yang sedang login
-                            })->get();
-
-
+        $products = Product::with(['galleries', 'user'])->latest()->where('users_id', $id)->get();
+        $products2 = Product::with(['galleries', 'user'])->where('users_id', $id)->get();
         return view('pages.profile',[
             'users' => $users,
             'products_count' => $products->count(),
             'products' => $products,
-            'sellTransactions' => $sellTransactions->count(),
+            'products2' => $products2,
         ]);
     }
 

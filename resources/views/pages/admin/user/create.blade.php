@@ -12,7 +12,7 @@
     >
     <div class="container-fluid">
         <div class="dashboard-heading">
-            <h2 class="dashboard-title">Admin Dashboard - Catogory</h2>
+            <h2 class="dashboard-title">Admin Dashboard - Pengguna</h2>
             <p class="dashboard-subtitle">Tambah User Baru</p>
         </div>
         <div class="dashboard-content">

@@ -39,4 +39,11 @@ class Product extends Model
     {
         return $this->belongsTo(Category::class, 'categories_id', 'id');
     }
+     public function transactiondetail()
+    {
+        return $this->hasMany(TransactionDetail::class, 'products_id', 'id');
+    }
+    // public function count_product(){
+    // return $this->transactiondetail()->count();
+    // }
 }

@@ -58,9 +58,10 @@
                         class="w-75"
                       />
                     </div>
-                    <div class="col-md-4">{{ $transaction->product->name ?? ''}}</div>
-                    <div class="col-md-3">{{ $transaction->transaction->user->name ?? ''}}</div>
-                    <div class="col-md-3">{{ $transaction->created_at ?? '' }}</div>
+                    <div class="col-md-3">{{ $transaction->product->name ?? ''}}</div>
+                    <div class="col-md-2">{{ $transaction->transaction->user->name ?? ''}}</div>
+                    <div class="col-md-2">{{ $transaction->transaction->transaction_status?? ''}}</div>
+                    <div class="col-md-2">{{ $transaction->created_at ?? '' }}</div>
                     <div class="col-md-1 d-none d-md-block">
                       <img
                         src="/images/dashboard-arrow-right.svg"

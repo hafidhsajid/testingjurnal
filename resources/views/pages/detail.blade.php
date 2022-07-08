@@ -5,61 +5,92 @@
 @endsection
 
 @section('content')
-    <div class="page-content page-details">
-        <section class="store-breadcrumbs" data-aos="fade-down" data-aos-delay="100">
-            <div class="container">
-                <div class="row">
-                    <div class="col-12">
-                        <nav>
-                            <ol class="breadcrumb">
-                                <li class="breadcrumb-item">
-                                    <a href="/index.html">Home</a>
-                                </li>
-                                <li class="breadcrumb-item active">Product Details</li>
-                            </ol>
-                        </nav>
-                    </div>
-                </div>
+<div class="page-content page-details">
+    <section
+      class="store-breadcrumbs"
+      data-aos="fade-down"
+      data-aos-delay="100"
+    >
+      <div class="container">
+        <div class="row">
+          <div class="col-12">
+            <nav>
+              <ol class="breadcrumb">
+                <li class="breadcrumb-item">
+                  <a href="/index.html">Home</a>
+                </li>
+                <li class="breadcrumb-item active">Product Details</li>
+              </ol>
+            </nav>
+          </div>
+        </div>
+      </div>
+    </section>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8">
+    <section class="store-gallery mb-3" id="gallery">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-10" data-aos="zoom-in">
+            <transition name="slide-fade" mode="out-in">
+              <img
+                :src="photos[activePhoto].url"
+                :key="photos[activePhoto].id"
+                class="w-100 main-image"
+                alt=""
+              />
+            </transition>
+          
+          <div class="row">
+              <div
+                class="col-3 col-lg-3 col-md-3 mt-3"
+                v-for="(photo, index) in photos"
+                :key="photo.id"
+                data-aos="zoom-in"
+                data-aos-delay="100"
+              >
+                <a href="#" @click="changeActive(index)">
+                  <img
+                    :src="photo.url"
+                    class="w-100 thumbnail-image"
+                    :class="{ active: index == activePhoto }"
+                    alt=""
+                  />
+                </a>
+              </div>
             </div>
-        </section>
-
-        <section class="store-gallery mb-3" id="gallery">
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-8" data-aos="zoom-in">
-                        <transition name="slide-fade" mode="out-in">
-                            <img :src="photos[activePhoto].url" :key="photos[activePhoto].id" class="w-100 main-image"
-                                alt="" />
-                        </transition>
-                    </div>
-                    <div class="col-lg-2">
-                        <div class="row">
-                            <div class="col-3 col-lg-12 mt-2 mt-lg-0" v-for="(photo, index) in photos"
-                                :key="photo.id" data-aos="zoom-in" data-aos-delay="100">
-                                <a href="#" @click="changeActive(index)">
-                                    <img :src="photo.url" class="w-100 thumbnail-image"
-                                        :class="{ active: index == activePhoto }" alt="" />
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+          </div>
+        
+      </div>
+    </section>
             </div>
-        </section>
-
-        <div class="store-details-container" data-aos="fade-out">
+            <div class="col-md-4">
             <section class="store-heading">
                 <div class="container">
-                    <div class="row">
-                        <div class="col-lg-8">
-                            <h1>{{ $product->name }}</h1>
-                            <div class="owner">By
-                                <a href="{{ route('profile', $product->user->id) }}">{{ $product->user->store_name }}</a>
-
-                            </div>
-                            <div class="price">Rp. {{ number_format($product->price) }}</div>
-                        </div>
-                        <div class="col-lg-2" data-aos="zoom-in">
+                <div class="row">
+                    <div class="col-lg-12">
+                    <h1>{{ $product->name }}</h1>
+                            <div class="row">
+                                <div class="col-md-12 mt-2 owner">By
+                                    <a href="{{ route('profile', $product->user->id) }}">{{ $product->user->store_name }}</a>
+                                </div>
+                                <div class="col-md-6 mb-2 stock">Stock : {{ number_format($product->stock) }}</div>
+                                <div class= "col-md-6 mb-2 stock">Terjual : {{ number_format($product->transactiondetail->count()) }}</div>
+                                <div class="col-md-12 price">Rp. {{ number_format($product->price) }}</div>
+                        
+                                    <section class="store-description">
+                                        <div class="container">
+                                            <div class="row">
+                                                <div class="col-12 col-lg-8">
+                                                    <p>
+                                                        {!! $product->description !!}
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </section>
+                        <div class="col-lg-12" data-aos="zoom-in">
                             @auth
                                 <!-- Memeriksa apakah stok produk lebih dari 0 -->
                                 @if ($product->stock >0)
@@ -67,7 +98,7 @@
                                 <form action="{{ route('detail-add', $product->id) }}" method="POST"
                                     enctype="multipart/form-data">
                                     @csrf
-                                    <button type="submit" class="btn btn-success px-4 text-white btn-block mb-3">
+                                    <button type="submit" class="btn btn-primary px-4 text-white btn-block mb-3">
                                         Add to Cart
                                     </button>
                                 </form>
@@ -92,24 +123,14 @@
                     </div>
                 </div>
             </section>
-
-            <section class="store-description">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-12 col-lg-8">
-                            <p>
-                                {!! $product->description !!}
-                            </p>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
+            </div>
+           
+             <div class="store-details-container" data-aos="fade-out">
             <section class="store-review">
                 <div class="container">
                     <div class="row">
                         <div class="col-12 col-lg-8 mb-3 mt-3">
-                            <h5>Customer Review (3)</h5>
+                            <h3>Customer Review (3)</h3>
                         </div>
                     </div>
                     <div class="row">
@@ -145,6 +166,8 @@
                     </div>
                 </div>
             </section>
+        </div>
+</div>
         </div>
     </div>
 @endsection

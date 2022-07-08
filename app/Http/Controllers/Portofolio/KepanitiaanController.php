@@ -6,6 +6,9 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Kepanitiaan;
+use Carbon\Carbon;
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Validation\Rule;
 
 class KepanitiaanController extends Controller
 {
@@ -45,13 +48,36 @@ class KepanitiaanController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-     public function update(Request $request, $id)
+    public function update(Request $request, $id)
     {
-        $data = $request->all();
+        $validator = Validator::make($request->all(),[
+            'penyelenggara' => 'string|max:255',
+            'nama_acara' => 'string|max:255',
+            'nama_jabatan' => 'string|max:255',
+            'divisi' => 'string|max:255',
+            'waktu_mulai' => 'date',
+            'waktu_selesai' => 'date',
+            'lokasi' => 'string|max:255',
+            'deskripsi' => 'nullable'
+        ]);
 
-        $item = Kepanitiaan::findOrFail($id);
+        if ($validator->fails()) {
+            return response(['errors'=>$validator->errors()->all()], 422);
+        }
 
-        $item->update($data);
+        $kepanitiaan = Kepanitiaan::where('id', $request->id)->first();
+
+        $kepanitiaan['penyelenggara'] = $request['penyelenggara'];
+        $kepanitiaan['nama_acara'] = $request['nama_acara'];
+        $kepanitiaan['nama_jabatan'] = $request['nama_jabatan'];
+        $kepanitiaan['divisi'] = $request['divisi'];
+        $kepanitiaan['waktu_mulai'] = $request['waktu_mulai'];
+        $kepanitiaan['waktu_selesai'] = $request['waktu_selesai'];
+        $kepanitiaan['lokasi'] = $request['lokasi'];
+        $kepanitiaan['deskripsi'] = $request['deskripsi'];
+        $kepanitiaan['updated_at'] = Carbon::now();
+
+        $kepanitiaan->save();
 
         return redirect()->route('dashboard-kepanitiaan');
     }

@@ -58,15 +58,37 @@
               @if (auth()->user()->roles == 'USER')
                 <a
                   href="{{ route('dashboard-withdraw')}}"
-                  class="list-group-item list-group-item-action {{ (request()->is('dashboard/withdraw')) ? 'active' : '' }}"
-                >
+                  class="list-group-item list-group-item-action list-group-item-info  {{ (request()->is('dashboard/withdraw')) ? 'active' : '' }}"
+                 >
                   Pengajuan Penarikan 
                 </a>
+                <li class="sidebar-dropdown">
+                  <a class="nav-link list-group-item list-group-item-action list-group-item-info" href="#">Portofolio</a>
+                  <div class="sidebar-submenu">
+                    <ul>
+                      <a class="nav-link list-group-item-action list-group-item-info {{ (request()->is('portfolio/biodata')) ? 'active' : '' }}" href="{{ route('portfolio-biodata') }}">Biodata</a>
+                      <a class="nav-link list-group-item-action list-group-item-info" href="#">Kepanitiaan</a>
+                      <a class="nav-link list-group-item-action list-group-item-info" href="#">Organisasi</a>
+                      <a class="nav-link list-group-item-action list-group-item-info" href="#">Pendidikan</a>
+                      <a class="nav-link list-group-item-action list-group-item-info" href="#">Experience</a>
+                      <a class="nav-link list-group-item-action list-group-item-info" href="#">Project</a>
+                      <a class="nav-link list-group-item-action list-group-item-info" href="#">Skills</a>
+                    </ul>
+                  </div>
+                </li>
                 <a
                   href="{{ route('dashboard-setting-store')}}"
                   class="list-group-item list-group-item-action list-group-item-info {{ (request()->is('dashboard/settings*')) ? 'active' : '' }}"
                 >
                   Pengaturan Toko
+                </a>
+              @endif
+               @if (auth()->user()->roles == 'BUYER')
+                <a
+                  href="{{ route('dashboard-refund')}}"
+                  class="list-group-item list-group-item-action list-group-item-info {{ (request()->is('dashboard/refund')) ? 'active' : '' }}"
+                >
+                  Pengembalian Dana
                 </a>
               @endif
               <a
@@ -75,7 +97,7 @@
               >
                 Pengaturan Akun
               </a>
-              <a class="dropdown-item" href="{{ route('logout') }}"
+              <a class="list-group-item list-group-item-action list-group-item-info dropdown-item" href="{{ route('logout') }}"
                   onclick="event.preventDefault();
                             document.getElementById('logout-form').submit();"
               >
@@ -136,10 +158,10 @@
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                         <a class="dropdown-item" href="{{ route('home')}}"
-                        >Back to Store</a
+                        >Home</a
                         >
                         <a class="dropdown-item" href="{{ url('dashboard/account')}}"
-                        >Settings</a
+                        >Pengaturan</a
                         >
                         <a class="dropdown-item" href="{{ route('logout') }}"
                           onclick="event.preventDefault();
@@ -200,6 +222,28 @@
     $("#menu-toggle").click(function (e) {
       e.preventDefault();
       $("#wrapper").toggleClass("toggled");
+    });
+
+    $(".sidebar-dropdown > a").click(function() {
+      $(".sidebar-submenu").slideUp(250);
+      if (
+        $(this)
+          .parent()
+          .hasClass("active")
+      ) {
+        $(".sidebar-dropdown").removeClass("active");
+        $(this)
+          .parent()
+          .removeClass("active");
+      } else {
+        $(".sidebar-dropdown").removeClass("active");
+        $(this)
+          .next(".sidebar-submenu")
+          .slideDown(250);
+        $(this)
+          .parent()
+          .addClass("active");
+      }
     });
   </script>
    @stack('addon-script')

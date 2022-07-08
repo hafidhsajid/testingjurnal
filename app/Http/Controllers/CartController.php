@@ -34,6 +34,7 @@ class CartController extends Controller
         return view('pages.success');
     }
 
+
     public function updateQuantity(Request $request, Cart $cart) // fungsi untuk mengupdate jumlah produk pada cart
     {
         // Cek berapa stock produk
@@ -54,9 +55,11 @@ class CartController extends Controller
     public function cekOngkir(Request $request, $regencies_id) {
         // Menghitung berapa jumlah toko dalam cart
         $jumlah_toko = DB::table('carts')
-            ->join('products', 'carts.products_id', '=', 'products.id')
-            ->selectRaw('count(products.users_id)')
-            ->groupBy('products.users_id')
+
+            ->where('carts.users_id', Auth::user()->id)
+            ->join('products', 'carts.products_id', '=', 'products.id') // buat join tabel produk sm carts fk di tabel carts pk di tabel produk
+            ->selectRaw('count(products.users_id)') //hitung jumlah users produknya ada brp users
+            ->groupBy('products.users_id') // fungsinya klo masukin produk yg sama dri toko yg sama digroup gt ga dipisah jadi cuma ditambah qty nya
             ->get()->count();
 
         // Menghitung ongkos kirim
@@ -71,4 +74,5 @@ class CartController extends Controller
 
         return $ongkir * $jumlah_toko; // menghitung total ongkos kirim
     }
+
 }

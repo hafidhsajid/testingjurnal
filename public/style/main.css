@@ -4901,7 +4901,7 @@ input[type="button"].btn-block {
 .nav-pills .nav-link.active,
 .nav-pills .show > .nav-link {
     color: #fff;
-    background-color: #007bff;
+    background-color: #00ffb3;
 }
 
 .nav-fill .nav-item {
@@ -11369,7 +11369,7 @@ footer p {
 }
 
 .page-details .store-heading h1 {
-    font-size: 24px;
+    font-size: 30px;
     line-height: 36px;
     margin-bottom: 0px;
     color: #0c0d36;
@@ -11377,7 +11377,7 @@ footer p {
 
 .page-details .store-heading .owner {
     font-weight: 200;
-    font-size: 14px;
+    font-size: 16px;
     line-height: 21px;
     color: #979797;
     margin-bottom: 8px;
@@ -11385,12 +11385,24 @@ footer p {
 
 .page-details .store-heading .price {
     font-weight: 500;
-    font-size: 18px;
+    font-size: 24px;
     line-height: 27px;
     color: #ff7158;
     margin-bottom: 10px;
 }
+.page-details .store-heading .stock {
+    font-weight: 500;
+    font-size: 13px;
+    line-height: 27px;
+    color: rgb(71, 71, 71);
+    margin-bottom: 10px;
 
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 27px;
+    color: #969090;
+    margin-bottom: 10px;
+}
 .page-details .store-gallery {
     margin-bottom: 20px;
 }
@@ -11780,6 +11792,15 @@ footer p {
     right: 0;
 }
 
+.sidebar-dropdown {
+    display: inline-block;
+    text-decoration: none;
+}
+
+.sidebar-submenu {
+    display: none;
+}
+
 .store-breadcrumbs .breadcrumb {
     background: transparent;
     padding: 0;
@@ -11867,7 +11888,7 @@ footer p {
 
 .component-products .products-price {
     font-weight: 500;
-    font-size: 16px;
+    font-size: 20px;
     color: #ff7158;
 }
 

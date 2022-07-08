@@ -151,17 +151,24 @@
 <script src="https://unpkg.com/vue-toasted"></script>
 <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 <script>
+    $("#menu-toggle").click(function (e) {
+      e.preventDefault();
+      $("#wrapper").toggleClass("toggled");
+    });
+
   var locations = new Vue({
     el: "#locations",
     mounted() {
       AOS.init();
       this.getProvincesData();
+      this.getRegenciesData();
     },
     data: {
       provinces: null,
       regencies: null,
-      provinces_id: null,
-      regencies_id: null,
+      provinces_id: {{ $user->provinces_id }},
+      regencies_id: {{ $user->regencies_id }},
+
     },
     methods: {
       getProvincesData() {

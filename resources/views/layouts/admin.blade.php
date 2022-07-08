@@ -59,24 +59,20 @@
               Kategori
             </a>
             <a
-            href="{{ route('slider.index')}}"
-            class="list-group-item list-group-item-action {{ (request()->is('admin/slider*')) ? 'active' : '' }}"
+              href="{{ route('slider.index')}}"
+              class="list-group-item list-group-item-action list-group-item-info {{ (request()->is('admin/slider*')) ? 'active' : '' }}"
             >
               Slider
             </a>
             <a
               href="{{ route('transaction.index')}}"
-<<<<<<< Updated upstream
-              class="list-group-item list-group-item-action {{ (request()->is('admin/transaction*')) ? 'active' : '' }}"
-=======
-              class="list-group-item list-group-item-action list-group-item-info"
->>>>>>> Stashed changes
+              class="list-group-item list-group-item-action list-group-item-info {{ (request()->is('admin/transaction*')) ? 'active' : '' }}"
             >
               Transaksi
             </a>
             <a
               href="{{ route('withdraw.index')}}"
-              class="list-group-item list-group-item-action {{ (request()->is('admin/withdraw*')) ? 'active' : '' }}"
+              class="list-group-item list-group-item-action list-group-item-info{{ (request()->is('admin/withdraw*')) ? 'active' : '' }}"
             >
               Penarikan 
             </a>
@@ -144,7 +140,7 @@
                         alt=""
                         class="rounded-circle mr-2 profile-picture"
                         />
-                        Hi, Siapa anda?
+                        Hi, {{ Auth::user()->name }}
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                         <a class="dropdown-item" href="/">Logout</a>

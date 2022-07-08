@@ -22,6 +22,9 @@
             <li class="nav-item">
               <a href="{{ route('categories')}}" class="nav-link">Categories</a>
             </li>
+            <li class="nav-item">
+              <a href="{{ route('listproduct')}}" class="nav-link">Produk</a>
+            </li>
           </ul>
           <!--Desktop Menu-->
           <ul class="navbar-nav d-none d-lg-flex">
@@ -38,7 +41,7 @@
                   alt=""
                   class="rounded-circle mr-2 profile-picture"
                 />
-                Hi, Siapa anda?
+                Hi, {{ Auth::user()->name }}
               </a>
               <div class="dropdown-menu">
                 <a href="{{route('/dashboard')}}" class="dropdown-item">Dashboard</a>
@@ -58,7 +61,7 @@
 
           <ul class="navbar-nav d-block d-lg-none">
             <li class="nav-item" style="list-style: none">
-              <a href="#" class="nav-link"> Hi. Siapa anda? </a>
+              <a href="#" class="nav-link"> Hi, {{ Auth::user()->name }} </a>
             </li>
             <li class="nav-item" style="list-style: none">
               <a href="#" class="nav-link d-inline-block"> Cart </a>

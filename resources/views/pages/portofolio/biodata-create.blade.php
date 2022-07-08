@@ -49,7 +49,7 @@
                             <div class="col-md-4">
                               <div class="form-group">
                                 <label>NIM</label>
-                                <input type="text" class="form-control" name="nim" />
+                                <input type="text" class="form-control" name="nim" value="{{ $user->nim }}" />
                               </div>
                             </div>
                             <div class="col-md-4">
@@ -67,25 +67,25 @@
                             <div class="col-md-6">
                               <div class="form-group">
                                 <label>Tempat Lahir</label>
-                                <input type="text" class="form-control" name="tempat_lahir" />
+                                <input type="text" class="form-control" name="tempat_lahir" value="{{ $user->tempat_lahir }}" />
                               </div>
                             </div>
                             <div class="col-md-6">
                               <div class="form-group">
                                 <label>Tanggal Lahir</label>
-                                <input type="date" class="form-control" name="tanggal_lahir" />
+                                <input type="date" class="form-control" name="tanggal_lahir" value="{{ $user->tanggal_lahir}}" />
                               </div>
                             </div>
                             <div class="col-md-6">
                               <div class="form-group">
                                 <label>Alamat KTP</label>
-                                <input type="text" class="form-control" name="address_one" />
+                                <input type="text" class="form-control" name="address_one" value="{{ $user->address_one }}" />
                               </div>
                             </div>
                             <div class="col-md-6">
                               <div class="form-group">
                                 <label>Alamat Solo</label>
-                                <input type="text" class="form-control" name="alamat_solo" />
+                                <input type="text" class="form-control" name="alamat_solo" value="{{ $user->alamat_solo }}" />
                               </div>
                             </div>
                             <div class="col-md-4">
@@ -101,19 +101,19 @@
                             <div class="col-md-4">
                               <div class="form-group">
                                 <label>Angkatan</label>
-                                <input type="number" class="form-control" name="angkatan" />
+                                <input type="number" class="form-control" name="angkatan" value="{{ $user->angkatan}}" />
                               </div>
                             </div>
                             <div class="col-md-4">
                               <div class="form-group">
                                 <label>Fakultas</label>
-                                <input type="text" class="form-control" name="fakultas" value="Sekolah Vokasi" />
+                                <input type="text" class="form-control" name="fakultas" value="{{ $user->fakultas }}" />
                               </div>
                             </div>
                             <div class="col-md-12">
                               <div class="form-group">
                                 <label>Deskripsi</label>
-                                <textarea name="deskripsi" id="editor"></textarea>
+                                <textarea name="deskripsi" id="editor">{!! $user->deskripsi !!}</textarea>
                               </div>
                             </div>
                            

@@ -175,25 +175,21 @@
                         </div>
                     </div>
                     <div class="row" data-aos="fade-up" data-aos-delay="200">
-                        <div class="col-4 col-md-2">
-                            <div class="product-title">Rp.0</div>
-                            <div class="product-subtitle">PPN</div>
+                        <div class="col-4 col-md-3">
+                            <div class="product-title" id="totalproduct-text">Rp.{{ number_format($totalPrice ?? 0) }}</div>
+                            <div class="product-subtitle">Total Harga Produk</div>
                         </div>
-                        <div class="col-4 col-md-2">
-                            <div class="product-title">Rp.0</div>
-                            <div class="product-subtitle">Asuransi Pengiriman</div>
-                        </div>
-                        <div class="col-4 col-md-2">
+                        <div class="col-4 col-md-3">
                             <div class="product-title" id="ongkir-text">Rp.0</div>
                             <div class="product-subtitle">Ongkos Kirim</div>
                         </div>
-                        <div class="col-4 col-md-2">
+                        <div class="col-4 col-md-3">
                             <div class="product-title text-success" id="total-text">Rp.
                                 {{ number_format($totalPrice ?? 0) }}</div>
-                            <div class="product-subtitle">Total</div>
+                            <div class="product-subtitle">Total Pembayaran</div>
                         </div>
                         <div class="col-8 col-md-3">
-                            <button type="submit" id="btn_submit" class="btn btn-success mt-4 px-4 btn-block" disabled>
+                            <button type="submit" id="btn_submit" class="btn btn-info mt-4 px-4 btn-block" disabled>
                                 CheckOut
                             </button>
                         </div>
@@ -257,6 +253,7 @@
                 type: 'GET',
                 dataType: 'json',
                 success: function(res) {
+                    $('#totalproduct-text').text('Rp. ' + total_product); 
                     $('#ongkir-text').text('Rp. ' + res); // menampilkan harga ongkir
                     $('#total-text').text('Rp. ' + (total_product + res)); // menampilkan total harga
                     $('#total_price').val(total_product + res); // merubah value form total harga

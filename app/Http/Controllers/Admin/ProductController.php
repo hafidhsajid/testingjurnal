@@ -24,7 +24,7 @@ class ProductController extends Controller
     {
         if(request()->ajax())
         {
-            $query = Product::with(['user','category']);
+            $query = Product::with(['user','category'])->withCount('transactiondetail');
 
             return DataTablesDataTables::of($query)
                 ->addColumn('action', function($item){

@@ -21,7 +21,7 @@ class AddTableAtUsersTable extends Migration
             $table->integer('prodis_id')->nullable();
             $table->string('fakultas')->nullable();
             $table->integer('angkatan')->nullable();
-            $table->string('deskripsi')->nullable();
+            $table->longText('deskripsi')->nullable();
         });
     }
 
